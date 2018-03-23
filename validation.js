@@ -53,7 +53,7 @@ async function filterJudge(result, key, superKey, keyString, value) {
   if (result) {
     return value === undefined ? { key: superKey } : { object: { [key]: value }, key: superKey };
   } else {
-    throw { code: code.fail, msg: `参数${keyString}验证失败！` };
+    throw { msg: `参数${keyString}验证失败！` };
   }
 }
 
@@ -84,7 +84,7 @@ async function argsFilter(args = {}, rules, superKey, keyString) {
     // id: mongoose.Types.ObjectId.isValid,  // 坑！
     id: value => value.toString().match(/^[0-9a-fA-F]{24}$/),
     undefined() {
-      throw { code: code.fail, msg: '未知的验证规则！' };
+      throw { msg: '未知的验证规则！' };
     }
   };
 
